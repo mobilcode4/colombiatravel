@@ -1,2 +1,2 @@
 # colombiatravel
-Mobil application about best places in colombia
+Mobile application about best places in colombia
