@@ -43,7 +43,6 @@ class _LoginPageState extends State<LoginPage> {
 
   void _validateUser(){
     if (_email.text == userLoad.email && _password.text == userLoad.password ){
-      _showMsg("Debe digitar el correo y la contrasena");
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
     }else {
       _showMsg("Correo o contraseña incorrectos");
