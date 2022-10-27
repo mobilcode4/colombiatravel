@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:login/models/User.dart';
 import 'package:login/pages/home_page.dart';
-import 'package:login/pages/register_page.dar.dart';
+import 'package:login/pages/register_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     scaffold.showSnackBar(
       SnackBar(content: Text(msg),
         action: SnackBarAction(
-            label: 'Accept', onPressed: scaffold.hideCurrentSnackBar),
+            label: 'Aceptar', onPressed: scaffold.hideCurrentSnackBar),
       ),
     );
   }
