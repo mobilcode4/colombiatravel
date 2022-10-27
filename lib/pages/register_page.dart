@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:login/models/User.dart';
+import 'package:login/models/user.dart';
 import 'package:login/pages/login_page.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,32 +20,34 @@ class _RegisterPageState extends State<RegisterPage> {
   final _password = TextEditingController();
   final _repPassword = TextEditingController();
 
+  String _data = "Informacion: ";
+
   Genre? _genre = Genre.masculino;
 
   bool _aventura = false;
   bool _fantasia = false;
   bool _terror = false;
 
-  String buttonMsg = "Fecha de nacimiento ";
+  String buttonMsg = "Fecha de nacimiento";
 
   String _date = "";
 
-  String _dateConverter(DateTime newDate){
-    final DateFormat formatter = DateFormat("yyyy-mm-dd");
+  String _dateConverter(DateTime newDate) {
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
     final String dateFormatted = formatter.format(newDate);
     return dateFormatted;
   }
 
   void _showSelectDate() async {
     final DateTime? newDate = await showDatePicker(
-        context: context,
-        locale: const Locale("es", "CO"),
-        initialDate: DateTime(2022,8),
-        firstDate: DateTime(1900,1),
-        lastDate: DateTime(2022,12),
-        helpText: "Fecha de nacimiento"
+      context: context,
+      locale: const Locale("es", "CO"),
+      initialDate: DateTime(2022, 8),
+      firstDate: DateTime(1900, 1),
+      lastDate: DateTime(2022, 12),
+      helpText: "Fecha de nacimiento",
     );
-    if (newDate != null){
+    if (newDate != null) {
       setState(() {
         _date = _dateConverter(newDate);
         buttonMsg = "Fecha de nacimiento: ${_date.toString()}";
@@ -53,14 +55,14 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  void _showMsg (String msg){
+  void _showMsg(String msg){
     final scaffold = ScaffoldMessenger.of(context);
-        scaffold.showSnackBar(
-          SnackBar(content: Text(msg),
-          action: SnackBarAction(
-            label: 'Aceptar', onPressed: scaffold.hideCurrentSnackBar),
-          ),
-        );
+    scaffold.showSnackBar(
+      SnackBar(content: Text(msg),
+      action: SnackBarAction(
+        label: 'Aceptar', onPressed: scaffold.hideCurrentSnackBar),
+      ),
+    );
   }
 
   void saveUser(User user)async{
@@ -70,28 +72,23 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void _onRegisterButtonClicked() {
     setState(() {
-      // comparar contrasts
       if(_password.text == _repPassword.text){
-        String genre = "Masculono";
-        String favoritos = "";
-        if (_genre == Genre.femenino) {
-          genre = "Femenino";
-        }
+      String genre = "Masculino";
+      String favoritos = "";
 
-        if (_aventura) favoritos = "$favoritos Aventura de";
-        if (_fantasia) favoritos = "$favoritos Fantasia";
-        if (_terror) favoritos = "$favoritos Terror";
+      if (_genre == Genre.femenino) {
+        genre = "Femenino";
+      }
 
-        var user = User(_name.text, _email.text, _password.text, _genre, favoritos, _date);
-        saveUser(user);
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-
-        /*_data =
-          "nombre: ${_name.text} \nCorreo electronico ${_email.text} "
-              "\n Genero:${_genre} \n Generos favoristos: $favoritos "
-              "\n Fecha de nacimiento: $_date";*/
+      if (_aventura) favoritos = "$favoritos Aventura,";
+      if (_fantasia) favoritos = "$favoritos Fantasia,";
+      if (_terror) favoritos = "$favoritos Terror,";
+      var user = User(_name.text, _email.text, _password.text, genre,
+          favoritos, _date);
+      saveUser(user);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
       }else{
-        _showMsg ("Las contraseñas deben ser iguales");
+        _showMsg("Las contraseñas deben de ser iguales");
       }
     });
   }
@@ -106,8 +103,12 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Text("",),
-                const Text("REGISTER", style: TextStyle(fontSize: 30,),
+                const Text(
+                  "",
+                ),
+                const Text(
+                  "REGISTER",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 const Image(image: AssetImage('assets/images/logo.png')),
                 const SizedBox(
@@ -127,7 +128,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Correo electronico'),
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 const SizedBox(
                   height: 16.0,
@@ -135,7 +136,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 TextFormField(
                   controller: _password,
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(), labelText: 'contraseña'),
+                      border: OutlineInputBorder(), labelText: 'Contraseña'),
                   keyboardType: TextInputType.text,
                 ),
                 const SizedBox(
@@ -145,47 +146,45 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _repPassword,
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Repetir Contraseña'),
+                      labelText: "Repetir Contraseña"),
                   keyboardType: TextInputType.text,
                 ),
                 Row(
                   children: [
                     Expanded(
                       child: ListTile(
-                        title: const Text("Masculino"),
+                        title: const Text('Masculino'),
                         leading: Radio<Genre>(
-                          value: Genre.masculino,
-                          groupValue: _genre,
-                          onChanged: (Genre? value) {
-                            setState(() {
-                              _genre = value;
-                            });
-                          },
-                        ),
+                            value: Genre.masculino,
+                            groupValue: _genre,
+                            onChanged: (Genre? value) {
+                              setState(() {
+                                _genre = value;
+                              });
+                            }),
                       ),
                     ),
                     Expanded(
                       child: ListTile(
-                        title: const Text("Femenino"),
+                        title: const Text('Femenino'),
                         leading: Radio<Genre>(
-                          value: Genre.femenino,
-                          groupValue: _genre,
-                          onChanged: (Genre? value) {
-                            setState(() {
-                              _genre = value;
-                            });
-                          },
-                        ),
+                            value: Genre.femenino,
+                            groupValue: _genre,
+                            onChanged: (Genre? value) {
+                              setState(() {
+                                _genre = value;
+                              });
+                            }),
                       ),
                     ),
                   ],
                 ),
                 const Text(
-                  "Generos favoritos",
-                  style: TextStyle(fontSize: 20),
+                  'Generos favoritos',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 CheckboxListTile(
-                  title: const Text("Aventura"),
+                  title: const Text('Aventura'),
                   value: _aventura,
                   selected: _aventura,
                   onChanged: (bool? value) {
@@ -195,7 +194,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 CheckboxListTile(
-                  title: const Text("Fantasia"),
+                  title: const Text('Fantasia'),
                   value: _fantasia,
                   selected: _fantasia,
                   onChanged: (bool? value) {
@@ -205,7 +204,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 CheckboxListTile(
-                  title: const Text("Terror"),
+                  title: const Text('Terror'),
                   value: _terror,
                   selected: _terror,
                   onChanged: (bool? value) {
@@ -214,7 +213,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     });
                   },
                 ),
-
                 ElevatedButton(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 16),
@@ -224,7 +222,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   child: Text(buttonMsg),
                 ),
-
                 ElevatedButton(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 16),
