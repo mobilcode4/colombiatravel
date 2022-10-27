@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
                 "",
               ),
               Text(
-                "META COMPLIDA PARA EL SPRINT 2",
+                "META CUMPLIDA PARA EL SPRINT 2",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               Image(image: AssetImage('assets/images/logo.png')),

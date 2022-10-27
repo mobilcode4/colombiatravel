@@ -25,8 +25,11 @@ class _Splash_pageState extends State<Splash_page> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+
       body: Center(
-        child: Image(image: AssetImage('assets/images/splash.jpg'),),
+        child: CircleAvatar(backgroundImage: NetworkImage('assets/images/Colombia.png'),
+        radius: 300,
+        ),
       ),
     );
   }
