@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     scaffold.showSnackBar(
       SnackBar(content: Text(msg),
         action: SnackBarAction(
-            label: 'Aceptar', onPressed: scaffold.hideCurrentSnackBar),
+            label: 'Accept', onPressed: scaffold.hideCurrentSnackBar),
       ),
     );
   }
