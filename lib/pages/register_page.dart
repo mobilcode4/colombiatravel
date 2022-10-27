@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:login/models/user.dart';
+import 'package:login/models/User.dart';
 import 'package:login/pages/login_page.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -55,39 +55,41 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  void _showMsg(String msg){
+  void _showMsg(String msg) {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
-      SnackBar(content: Text(msg),
-      action: SnackBarAction(
-        label: 'Aceptar', onPressed: scaffold.hideCurrentSnackBar),
+      SnackBar(
+        content: Text(msg),
+        action: SnackBarAction(
+            label: 'Aceptar', onPressed: scaffold.hideCurrentSnackBar),
       ),
     );
   }
 
-  void saveUser(User user)async{
+  void saveUser(User user) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString("user", jsonEncode(user));
   }
 
   void _onRegisterButtonClicked() {
     setState(() {
-      if(_password.text == _repPassword.text){
-      String genre = "Masculino";
-      String favoritos = "";
+      if (_password.text == _repPassword.text) {
+        String genre = "Masculino";
+        String favoritos = "";
 
-      if (_genre == Genre.femenino) {
-        genre = "Femenino";
-      }
+        if (_genre == Genre.femenino) {
+          genre = "Femenino";
+        }
 
-      if (_aventura) favoritos = "$favoritos Aventura,";
-      if (_fantasia) favoritos = "$favoritos Fantasia,";
-      if (_terror) favoritos = "$favoritos Terror,";
-      var user = User(_name.text, _email.text, _password.text, genre,
-          favoritos, _date);
-      saveUser(user);
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-      }else{
+        if (_aventura) favoritos = "$favoritos Aventura,";
+        if (_fantasia) favoritos = "$favoritos Fantasia,";
+        if (_terror) favoritos = "$favoritos Terror,";
+        var user = User(
+            _name.text, _email.text, _password.text, genre, favoritos, _date);
+        saveUser(user);
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LoginPage()));
+      } else {
         _showMsg("Las contraseñas deben de ser iguales");
       }
     });
