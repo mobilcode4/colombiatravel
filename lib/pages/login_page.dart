@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _getUser()async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    print("Llega aca");
     Map<String, dynamic> userMap = jsonDecode(prefs.getString("user")!);
     userLoad = User.fromJson(userMap);
   }
@@ -82,6 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                     border: OutlineInputBorder(),
                     labelText: 'Contraseña'),
                 keyboardType: TextInputType.emailAddress,
+                obscureText: true,
               ),
               const SizedBox(
                 height: 16.0,

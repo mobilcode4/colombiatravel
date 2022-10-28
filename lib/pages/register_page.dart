@@ -138,6 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(), labelText: 'Contraseña'),
                   keyboardType: TextInputType.text,
+                  obscureText: true,
                 ),
                 const SizedBox(
                   height: 16.0,
@@ -148,6 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       border: OutlineInputBorder(),
                       labelText: "Repetir Contraseña"),
                   keyboardType: TextInputType.text,
+                  obscureText: true,
                 ),
                 Row(
                   children: [
@@ -215,6 +217,16 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 CheckboxListTile(
                   title: const Text('Barranquilla'),
+                  value: _terror,
+                  selected: _terror,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      _terror = value!;
+                    });
+                  },
+                ),
+                CheckboxListTile(
+                  title: const Text('Lorica'),
                   value: _terror,
                   selected: _terror,
                   onChanged: (bool? value) {
