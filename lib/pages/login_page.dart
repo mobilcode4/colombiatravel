@@ -43,7 +43,6 @@ class _LoginPageState extends State<LoginPage> {
 
   void _validateUser(){
     if (_email.text == userLoad.email && _password.text == userLoad.password ){
-      _showMsg("Debe digitar el correo y la contrasena");
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
     }else {
       _showMsg("Correo o contraseña incorrectos");
@@ -60,10 +59,13 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Image(image: AssetImage('assets/images/logo1.jpg')),
+              const Image(image: AssetImage('assets/images/giphy.gif')),
+
               const SizedBox(
                 height: 16,
               ),
+
+
               TextFormField(
                 controller: _email,
                 decoration: const InputDecoration(
