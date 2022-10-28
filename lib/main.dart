@@ -14,15 +14,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Login',
-      localizationsDelegates: const  [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale("en", "US"),
-        Locale("es", "CO")
-      ],
+      supportedLocales: const [Locale("en", "US"), Locale("es", "CO")],
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -30,4 +27,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
