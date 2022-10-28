@@ -232,6 +232,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   child: Text(buttonMsg),
                 ),
+                const SizedBox(height: 16,),
                 ElevatedButton(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 16),
