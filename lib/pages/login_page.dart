@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Image(image: AssetImage('assets/images/logo1.jpg')),
+                const Image(image: AssetImage('assets/images/giphy.gif')),
                 const SizedBox(
                   height: 16,
                 ),

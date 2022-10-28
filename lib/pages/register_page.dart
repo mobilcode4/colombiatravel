@@ -23,7 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String _data = "Informacion: ";
 
   Genre? _genre = Genre.masculino;
-
+  bool _Bogota = false;
   bool _aventura = false;
   bool _fantasia = false;
   bool _terror = false;
@@ -109,10 +109,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   "",
                 ),
                 const Text(
-                  "REGISTER",
+                  "Ingresa tus datos",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
-                const Image(image: AssetImage('assets/images/logo.png')),
+                const Image(image: AssetImage('assets/images/registro.gif')),
                 const SizedBox(
                   height: 16.0,
                 ),
@@ -182,11 +182,21 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
                 const Text(
-                  'Generos favoritos',
+                  'Ciudades de Interes',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 CheckboxListTile(
-                  title: const Text('Aventura'),
+                  title: const Text('Bogota'),
+                  value: _Bogota,
+                  selected: _Bogota,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      _Bogota = value!;
+                    });
+                  },
+                ),
+                CheckboxListTile(
+                  title: const Text('Medellin'),
                   value: _aventura,
                   selected: _aventura,
                   onChanged: (bool? value) {
@@ -196,7 +206,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 CheckboxListTile(
-                  title: const Text('Fantasia'),
+                  title: const Text('Cali'),
                   value: _fantasia,
                   selected: _fantasia,
                   onChanged: (bool? value) {
@@ -206,7 +216,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 CheckboxListTile(
-                  title: const Text('Terror'),
+                  title: const Text('Barranquilla'),
                   value: _terror,
                   selected: _terror,
                   onChanged: (bool? value) {
@@ -224,6 +234,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   child: Text(buttonMsg),
                 ),
+                const SizedBox(height: 16,),
                 ElevatedButton(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 16),
