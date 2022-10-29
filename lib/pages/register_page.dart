@@ -25,8 +25,9 @@ class _RegisterPageState extends State<RegisterPage> {
   Genre? _genre = Genre.masculino;
   bool _Bogota = false;
   bool _Lorica = false;
-  bool _fantasia = false;
-  bool _terror = false;
+  bool _Popayan = false;
+  bool _Guapi = false;
+  bool _Cali = false;
 
   String buttonMsg = "Fecha de nacimiento";
 
@@ -80,10 +81,11 @@ class _RegisterPageState extends State<RegisterPage> {
         if (_genre == Genre.femenino) {
           genre = "Femenino";
         }
-
-        if (_Lorica) favoritos = "$favoritos Aventura,";
-        if (_fantasia) favoritos = "$favoritos Fantasia,";
-        if (_terror) favoritos = "$favoritos Terror,";
+        if (_Bogota) favoritos = "Bogota,";
+        if (_Lorica) favoritos = "$favoritos Lorica,";
+        if (_Popayan) favoritos = "$favoritos Popayan,";
+        if (_Guapi) favoritos = "$favoritos Guapi,";
+        if (_Cali) favoritos = "$favoritos Cali,";
         var user = User(
             _name.text, _email.text, _password.text, genre, favoritos, _date);
         saveUser(user);
@@ -227,7 +229,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     });
                   },
                 ),
-
                 ElevatedButton(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 16),
@@ -237,7 +238,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   child: Text(buttonMsg),
                 ),
-                const SizedBox(height: 16,),
+                const SizedBox(
+                  height: 16,
+                ),
                 ElevatedButton(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 16),
