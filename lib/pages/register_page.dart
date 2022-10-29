@@ -227,16 +227,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     });
                   },
                 ),
-                CheckboxListTile(
-                  title: const Text('Lorica'),
-                  value: _terror,
-                  selected: _terror,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      _terror = value!;
-                    });
-                  },
-                ),
+
                 ElevatedButton(
                   style: TextButton.styleFrom(
                     textStyle: const TextStyle(fontSize: 16),
