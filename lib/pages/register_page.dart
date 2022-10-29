@@ -81,7 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
           genre = "Femenino";
         }
 
-        if (_aventura) favoritos = "$favoritos Aventura,";
+        if (_Lorica) favoritos = "$favoritos Aventura,";
         if (_fantasia) favoritos = "$favoritos Fantasia,";
         if (_terror) favoritos = "$favoritos Terror,";
         var user = User(
