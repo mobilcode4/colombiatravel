@@ -112,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   "Ingresa tus datos",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
-                const Image(image: AssetImage('assets/images/registro.gif')),
+                const Image(image: AssetImage('assets/images/images (1).png')),
                 const SizedBox(
                   height: 16.0,
                 ),
