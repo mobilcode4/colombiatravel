@@ -210,22 +210,32 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 CheckboxListTile(
-                  title: const Text('Cali'),
-                  value: _fantasia,
-                  selected: _fantasia,
+                  title: const Text('Popayan'),
+                  value: _Popayan,
+                  selected: _Popayan,
                   onChanged: (bool? value) {
                     setState(() {
-                      _fantasia = value!;
+                      _Popayan = value!;
                     });
                   },
                 ),
                 CheckboxListTile(
-                  title: const Text('Barranquilla'),
-                  value: _terror,
-                  selected: _terror,
+                  title: const Text('Guapi'),
+                  value: _Guapi,
+                  selected: _Guapi,
                   onChanged: (bool? value) {
                     setState(() {
-                      _terror = value!;
+                      _Guapi = value!;
+                    });
+                  },
+                ),
+                CheckboxListTile(
+                  title: const Text('Cali'),
+                  value: _Cali,
+                  selected: _Cali,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      _Cali = value!;
                     });
                   },
                 ),
