@@ -24,7 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Genre? _genre = Genre.masculino;
   bool _Bogota = false;
-  bool _aventura = false;
+  bool _Lorica = false;
   bool _fantasia = false;
   bool _terror = false;
 
@@ -199,11 +199,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 CheckboxListTile(
                   title: const Text('Medellin'),
-                  value: _aventura,
-                  selected: _aventura,
+                  value: _Lorica,
+                  selected: _Lorica,
                   onChanged: (bool? value) {
                     setState(() {
-                      _aventura = value!;
+                      _Lorica = value!;
                     });
                   },
                 ),
