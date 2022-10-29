@@ -198,7 +198,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 CheckboxListTile(
-                  title: const Text('Medellin'),
+                  title: const Text('Lorica'),
                   value: _Lorica,
                   selected: _Lorica,
                   onChanged: (bool? value) {
