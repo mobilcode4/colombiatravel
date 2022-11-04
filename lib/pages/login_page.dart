@@ -80,6 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: const InputDecoration(
                       border: OutlineInputBorder(), labelText: 'Contraseña'),
                   keyboardType: TextInputType.emailAddress,
+                  obscureText: true,
                 ),
                 const SizedBox(
                   height: 16.0,
