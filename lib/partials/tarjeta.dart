@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Tarjeta extends StatelessWidget {
   String rutaImagen = "assets/images/pop1.jpg";
 
-  Tarjeta(this.rutaImagen);
+  Tarjeta(this.rutaImagen, {super.key});
 
   @override
   Widget build(BuildContext context) {
