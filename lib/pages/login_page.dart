@@ -54,6 +54,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white38,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
         child: Center(
@@ -68,6 +69,8 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   controller: _email,
                   decoration: const InputDecoration(
+                      fillColor: Colors.white38,
+                      filled: true,
                       border: OutlineInputBorder(),
                       labelText: 'Correo electrónico'),
                   keyboardType: TextInputType.emailAddress,
@@ -78,8 +81,11 @@ class _LoginPageState extends State<LoginPage> {
                 TextFormField(
                   controller: _password,
                   decoration: const InputDecoration(
+                      fillColor: Colors.white38,
+                      filled: true,
                       border: OutlineInputBorder(), labelText: 'Contraseña'),
                   keyboardType: TextInputType.emailAddress,
+                  obscureText: true,
                 ),
                 const SizedBox(
                   height: 16.0,
