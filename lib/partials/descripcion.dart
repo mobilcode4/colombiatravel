@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/partials/lista_comentarios.dart';
 
 class Description extends StatelessWidget {
   String nombreCiudad;
@@ -54,7 +55,7 @@ class Description extends StatelessWidget {
     );
 
     return Column(
-      children: [titulo_descripcion, description],
+      children: [titulo_descripcion, description, const ListaComentarios()],
     );
   }
 }
