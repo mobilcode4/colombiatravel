@@ -3,8 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:login/models/User.dart';
 import 'package:login/pages/login_page.dart';
 import 'package:login/repository/firebase_api.dart';
-import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -24,7 +22,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _password = TextEditingController();
   final _repPassword = TextEditingController();
 
-  String _data = "Informacion: ";
+  final String _data = "Informacion: ";
 
   Genre? _genre = Genre.masculino;
   bool _Bogota = false;
@@ -71,10 +69,25 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void saveUser(User user) async {
+  void _saveUSer(User user) async {
+    var result = await _firebaseApi.createUser(user);
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+  }
+
+  void _registerUser(User user) async {
     //SharedPreferences prefs = await SharedPreferences.getInstance();
     //prefs.setString("user", jsonEncode(user));
     var result = await _firebaseApi.registerUser(user.email, user.password);
+    String msg = "";
+    if (result == "invalid-email") {msg = "El correo electrónico digitado no ea valido";} else
+    if (result == "weak-password") {msg = "La contraseña debe tener minimo seis (6) digitos";} else
+    if (result == "email-already-in-use") {msg = "Ya existe una cuenta con ese correo electronico";} else
+    if (result == "network-request-failed") {msg = "Revisa tu conexion a internet";} else {
+      msg = "El usuario fue registrado exitosamente";
+      user.uid = result;
+      _saveUSer(user);
+    }
+    _showMsg(msg);
   }
 
   void _onRegisterButtonClicked() {
@@ -91,11 +104,9 @@ class _RegisterPageState extends State<RegisterPage> {
         if (_Popayan) favoritos = "$favoritos Popayan,";
         if (_Guapi) favoritos = "$favoritos Guapi,";
         if (_Cali) favoritos = "$favoritos Cali,";
-        var user = User(
+        var user = User("",
             _name.text, _email.text, _password.text, genre, favoritos, _date);
-        saveUser(user);
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const LoginPage()));
+        _registerUser(user);
       } else {
         _showMsg("Las contraseñas deben de ser iguales");
       }

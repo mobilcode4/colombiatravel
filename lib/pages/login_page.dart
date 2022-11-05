@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:login/models/User.dart';
 import 'package:login/pages/home_page.dart';
 import 'package:login/pages/register_page.dart';
+import 'package:login/repository/firebase_api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,9 +19,11 @@ class _LoginPageState extends State<LoginPage> {
 
   User userLoad = User.Empty();
 
+  final FirebaseApi _firebaseApi = FirebaseApi();
+
   @override
   void initState() {
-    _getUser();
+    //_getUser();
     super.initState();
   }
 
@@ -42,12 +45,28 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _validateUser() {
-    if (_email.text == userLoad.email && _password.text == userLoad.password) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
+  void _validateUser() async {
+
+    var result = await _firebaseApi.logInUser(_email.text, _password.text);
+    if (_email.text.isEmpty || _password.text.isEmpty) {
+      _showMsg("Por favor digita el correo y la contraseña");
     } else {
-      _showMsg("Correo o contraseña incorrectos");
+      String msg = "";
+      if (result == "invalid-email") {
+        msg = "El correo electrónico digitado no es valido";
+      }
+      else if (result == "wrong-password") {
+        msg = "Correo o contraseña incorrecta";
+      }
+      else if (result == "network-request-failed") {
+        msg = "Revisa tu conexion a internet";
+      }else {
+        msg = "Bienvanido";
+        _showMsg("Correo o contraseña incorrectos");
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
+      }
     }
   }
 
@@ -83,7 +102,8 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: const InputDecoration(
                       fillColor: Colors.white38,
                       filled: true,
-                      border: OutlineInputBorder(), labelText: 'Contraseña'),
+                      border: OutlineInputBorder(),
+                      labelText: 'Contraseña'),
                   keyboardType: TextInputType.emailAddress,
                   obscureText: true,
                 ),
