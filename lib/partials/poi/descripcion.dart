@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/partials/menu/main_menu.dart';
 import 'package:login/partials/poi/lista_comentarios.dart';
 
 // ignore: must_be_immutable
@@ -55,8 +56,40 @@ class Description extends StatelessWidget {
       ],
     );
 
+    final backButton = Stack(children: [
+      Positioned.fill(
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: <Color>[
+                Color(0xFF0D47A1),
+                Color(0xFF1976D2),
+                Color(0xFF42A5F5),
+              ],
+            ),
+          ),
+        ),
+      ),
+      TextButton(
+        style: TextButton.styleFrom(
+            textStyle: const TextStyle(
+                fontSize: 16, fontStyle: FontStyle.italic, color: Colors.cyan)),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: const Text(
+          'Atras',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      )
+    ]);
     return Column(
-      children: [titulo_descripcion, description, ListaComentarios()],
+      children: [
+        titulo_descripcion,
+        description,
+        const ListaComentarios(),
+        backButton
+      ],
     );
   }
 }
