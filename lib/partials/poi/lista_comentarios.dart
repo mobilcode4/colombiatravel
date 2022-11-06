@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'comentario.dart';
+import 'package:login/partials/poi/comentario.dart';
 
 class ListaComentarios extends StatelessWidget {
   const ListaComentarios({super.key});
@@ -10,12 +10,12 @@ class ListaComentarios extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Comentario(
-            "assets/img/traveler.jpg",
+            "assets/images/traveler.jpg",
             "traveler Uno",
             "3 Comentarios 9 Fotos",
             "Popayan es como un viaje en el tiempo, muy hermoso!!!"),
         Comentario(
-            "assets/img/traveler2.jpg",
+            "assets/images/traveler2.jpg",
             "traveler Dos",
             "1 Comentarios 2 Fotos",
             "Es peque pero todo es muy bonito, hay que volver.")
