@@ -8,7 +8,8 @@ class ItemMenu extends StatelessWidget {
   int index = 0;
   int estrellas = 0;
 
-  ItemMenu(this.ciudad, this.descripcion, this.estrellas, this.index,
+
+  ItemMenu(this.ciudad, this.descripcion, this.estrellas,  this.index,
       {super.key});
 
   @override
@@ -47,7 +48,8 @@ class ItemMenu extends StatelessWidget {
       ],
     );
     final contenedorFila = Row(
-      children: [const Text("img"), const VerticalDivider(), columnItem],
+      children: [
+        const Image(image: AssetImage('assets/images/lorica2.jpg'))]
     );
 
     return GestureDetector(
