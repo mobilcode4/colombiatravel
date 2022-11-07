@@ -7,7 +7,11 @@ class Poi extends StatelessWidget {
   String msg;
   String ciudad;
   int estrellas;
-  Poi(this.ciudad, this.msg, this.estrellas, {super.key});
+  String imgCiudadMenu;
+  String imgPrincipal;
+  Poi(this.ciudad, this.msg, this.estrellas, this.imgCiudadMenu,
+      this.imgPrincipal,
+      {super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +20,7 @@ class Poi extends StatelessWidget {
         ListView(
           children: [Description(ciudad, estrellas, msg)],
         ),
-        const Cabecera()
+        Cabecera(imgPrincipal)
       ],
     ));
   }

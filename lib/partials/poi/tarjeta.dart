@@ -8,6 +8,7 @@ class Tarjeta extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(rutaImagen);
     final tarjeta = Container(
       height: 270.0,
       width: 290.0,
@@ -15,7 +16,7 @@ class Tarjeta extends StatelessWidget {
       decoration: BoxDecoration(
           image:
               DecorationImage(fit: BoxFit.cover, image: AssetImage(rutaImagen)),
-          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           shape: BoxShape.rectangle,
           // ignore: prefer_const_literals_to_create_immutables
           boxShadow: [
