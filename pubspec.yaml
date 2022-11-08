@@ -63,6 +63,8 @@ flutter:
   assets:
     - assets/images/
     - assets/images/pop1.jpg
+    - assets/images/traveler.jpg
+    - assets/images/traveler2.jpg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
