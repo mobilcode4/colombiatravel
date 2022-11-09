@@ -55,8 +55,9 @@ class Comentario extends StatelessWidget {
           image: DecorationImage(
               fit: BoxFit.cover, image: AssetImage(pathImgUser))),
     );
-    return Row(
-      children: [imageUser, contenedorComentario],
-    );
+    return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(children: [imageUser, contenedorComentario]),
+        );
   }
 }
