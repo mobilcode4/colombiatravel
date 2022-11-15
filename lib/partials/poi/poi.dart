@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'descripcion.dart';
 import 'cabecera.dart';
+import 'map.dart';
 
 // ignore: must_be_immutable
 class Poi extends StatelessWidget {
@@ -15,13 +16,22 @@ class Poi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        ListView(
-          children: [Description(ciudad, estrellas, msg)],
-        ),
-        Cabecera(imgPrincipal)
-      ],
-    ));
+      body: Stack(
+        children: [
+          ListView(
+            children: [Description(ciudad, estrellas, msg)],
+          ),
+          Cabecera(imgPrincipal)
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Map()));
+        },
+        backgroundColor: Colors.blueAccent,
+        child: const Icon(Icons.map),
+      ),
+    );
   }
 }
