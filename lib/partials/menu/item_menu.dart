@@ -9,9 +9,12 @@ class ItemMenu extends StatelessWidget {
   int estrellas = 0;
   String imgCiudadMenu = '';
   String imgPrincipal = '';
+  String lat = '';
+  String long = '';
+  String zoom = '';
 
   ItemMenu(this.ciudad, this.descripcion, this.estrellas, this.imgCiudadMenu,
-      this.imgPrincipal, this.index,
+      this.imgPrincipal, this.index, this.lat, this.long, this.zoom,
       {super.key});
 
   @override
@@ -61,13 +64,8 @@ class ItemMenu extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => Poi(
-                      ciudad,
-                      descripcion,
-                      estrellas,
-                      imgCiudadMenu,
-                      imgPrincipal,
-                    )));
+                builder: (context) => Poi(ciudad, descripcion, estrellas,
+                    imgCiudadMenu, imgPrincipal, lat, long, zoom)));
       },
       child: Container(
         decoration: BoxDecoration(

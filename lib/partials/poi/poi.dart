@@ -10,8 +10,11 @@ class Poi extends StatelessWidget {
   int estrellas;
   String imgCiudadMenu;
   String imgPrincipal;
+  String lat;
+  String long;
+  String zoom;
   Poi(this.ciudad, this.msg, this.estrellas, this.imgCiudadMenu,
-      this.imgPrincipal,
+      this.imgPrincipal, this.lat, this.long, this.zoom,
       {super.key});
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,9 @@ class Poi extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Map()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Map(lat, long, zoom, ciudad)));
         },
         backgroundColor: Colors.blueAccent,
         child: const Icon(Icons.map),
