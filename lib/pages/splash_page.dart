@@ -27,8 +27,7 @@ class _Splash_pageState extends State<Splash_page> {
     return const Scaffold(
 
       body: Center(
-        child: CircleAvatar(backgroundImage: NetworkImage('assets/images/viaja.jpg'),
-        radius: 300,
+        child:Image(image: AssetImage('assets/images/viaja.jpg'),
         ),
       ),
     );

@@ -7,9 +7,14 @@ class ItemMenu extends StatelessWidget {
   String descripcion = '';
   int index = 0;
   int estrellas = 0;
+  String imgCiudadMenu = '';
+  String imgPrincipal = '';
+  String lat = '';
+  String long = '';
+  String zoom = '';
 
-
-  ItemMenu(this.ciudad, this.descripcion, this.estrellas,  this.index,
+  ItemMenu(this.ciudad, this.descripcion, this.estrellas, this.imgCiudadMenu,
+      this.imgPrincipal, this.index, this.lat, this.long, this.zoom,
       {super.key});
 
   @override
@@ -35,6 +40,9 @@ class ItemMenu extends StatelessWidget {
       );
     }
 
+    var imgMenu = Image.asset('assets/images/$imgCiudadMenu',
+        width: 90, height: 90, fit: BoxFit.fill);
+
     final columnItem = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -48,17 +56,16 @@ class ItemMenu extends StatelessWidget {
       ],
     );
     final contenedorFila = Row(
-      children: [
-        const Image(image: AssetImage('assets/images/lorica2.jpg'))]
+      children: [imgMenu, const VerticalDivider(), columnItem],
     );
 
     return GestureDetector(
       onTap: () {
-        print(ciudad);
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => Poi(ciudad, descripcion, estrellas)));
+                builder: (context) => Poi(ciudad, descripcion, estrellas,
+                    imgCiudadMenu, imgPrincipal, lat, long, zoom)));
       },
       child: Container(
         decoration: BoxDecoration(
