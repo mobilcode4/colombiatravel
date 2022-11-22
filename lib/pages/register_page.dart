@@ -14,7 +14,6 @@ class RegisterPage extends StatefulWidget {
 enum Genre { masculino, femenino }
 
 class _RegisterPageState extends State<RegisterPage> {
-
   final FirebaseApi _firebaseApi = FirebaseApi();
 
   final _name = TextEditingController();
@@ -69,20 +68,26 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void _saveUSer(User user) async {
+  void _saveUSer(UserApp user) async {
     var result = await _firebaseApi.createUser(user);
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
-  void _registerUser(User user) async {
+  void _registerUser(UserApp user) async {
     //SharedPreferences prefs = await SharedPreferences.getInstance();
     //prefs.setString("user", jsonEncode(user));
     var result = await _firebaseApi.registerUser(user.email, user.password);
     String msg = "";
-    if (result == "invalid-email") {msg = "El correo electrónico digitado no ea valido";} else
-    if (result == "weak-password") {msg = "La contraseña debe tener minimo seis (6) digitos";} else
-    if (result == "email-already-in-use") {msg = "Ya existe una cuenta con ese correo electronico";} else
-    if (result == "network-request-failed") {msg = "Revisa tu conexion a internet";} else {
+    if (result == "invalid-email") {
+      msg = "El correo electrónico digitado no ea valido";
+    } else if (result == "weak-password") {
+      msg = "La contraseña debe tener minimo seis (6) digitos";
+    } else if (result == "email-already-in-use") {
+      msg = "Ya existe una cuenta con ese correo electronico";
+    } else if (result == "network-request-failed") {
+      msg = "Revisa tu conexion a internet";
+    } else {
       msg = "El usuario fue registrado exitosamente";
       user.uid = result;
       _saveUSer(user);
@@ -104,8 +109,8 @@ class _RegisterPageState extends State<RegisterPage> {
         if (_Popayan) favoritos = "$favoritos Popayan,";
         if (_Guapi) favoritos = "$favoritos Guapi,";
         if (_Cali) favoritos = "$favoritos Cali,";
-        var user = User("",
-            _name.text, _email.text, _password.text, genre, favoritos, _date);
+        var user = UserApp("", _name.text, _email.text, _password.text, genre,
+            favoritos, _date);
         _registerUser(user);
       } else {
         _showMsg("Las contraseñas deben de ser iguales");

@@ -1,10 +1,8 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:login/models/User.dart';
-import 'package:login/pages/home_page.dart';
 import 'package:login/pages/register_page.dart';
+import 'package:login/partials/poi/favoritos.dart';
 import 'package:login/repository/firebase_api.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   final _email = TextEditingController();
   final _password = TextEditingController();
 
-  User userLoad = User.Empty();
+  UserApp userLoad = UserApp.Empty();
 
   final FirebaseApi _firebaseApi = FirebaseApi();
 
@@ -25,13 +23,6 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     //_getUser();
     super.initState();
-  }
-
-  _getUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    print("Llega aca");
-    Map<String, dynamic> userMap = jsonDecode(prefs.getString("user")!);
-    userLoad = User.fromJson(userMap);
   }
 
   void _showMsg(String msg) {
@@ -49,23 +40,23 @@ class _LoginPageState extends State<LoginPage> {
     if (_email.text.isEmpty || _password.text.isEmpty) {
       _showMsg("Debe digitar el correo y la contrasena");
     } else {
-      var result = await _firebaseApi.logInUser(_email.text, _password.text);
-      print("hola probando ");
-      print(result);
+      var userId = await _firebaseApi.logInUser(_email.text, _password.text);
+      print("userID: $userId");
       String msg = "";
-      if (result == "invalid-email") {
+      if (userId == "invalid-email") {
         msg = "El correo electónico está mal escrito";
-      } else if (result == "wrong-password") {
+      } else if (userId == "wrong-password") {
         msg = "Correo o contrasena incorrecta";
-      } else if (result == "network-request-failed") {
+      } else if (userId == "network-request-failed") {
         msg = "Revise su conexion a internet";
-      }else if (result == "user-not-found"){
+      } else if (userId == "user-not-found") {
         msg = "Usuario no registrado";
       } else {
         msg = "Bienvenido";
         _showMsg(msg);
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const Favoritos()));
       }
     }
   }

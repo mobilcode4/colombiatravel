@@ -4,10 +4,10 @@ import 'dart:convert';
 import 'package:login/partials/menu/item_menu.dart';
 
 class MainMenu extends StatelessWidget {
-  const MainMenu({super.key});
+  const MainMenu(context, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     String ciudades = """[
           {"name":"Bogota", "temperatura": "15", "descripcion":"Epicentro de la economía, lo administrativo, la política, la industria, el arte y la cultura del país","calificacion":5,"imagen_menu" : "bogota1.jpg","imagen_principal" : "bogota2.jpg","lat":"4.60971","long":"-74.08175","zm":"11"},
           {"name":"Lorica", "temperatura": "28", "descripcion":"Conocida como Ciudad Antigua y Señorial, La capital del Bajo Sinú y La capital de Bocachico","calificacion":5,"imagen_menu" : "lorica1.jpg","imagen_principal" : "lorica2.jpg","lat":"9.239141","long":"-75.813648","zm":"13"},
@@ -39,9 +39,35 @@ class MainMenu extends StatelessWidget {
     }
     //data.forEach((key, value) => print("key: $key, value:$value"));
 
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(5, 40, 5, 5),
-      children: listCiudades,
-    );
+    return WillPopScope(
+        onWillPop: () => _onBackPressed(context),
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(5, 40, 5, 5),
+          children: listCiudades,
+        ));
+  }
+
+  Future<bool> _onBackPressed(BuildContext context) async {
+    bool? exitApp = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Estas seguro?'),
+            content: const Text('quires salir de la App?'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () =>
+                    Navigator.of(context).pop(false), //<-- SEE HERE
+                child: const Text('No'),
+              ),
+              TextButton(
+                onPressed: () =>
+                    Navigator.of(context).pop(true), // <-- SEE HERE
+                child: const Text('Si'),
+              ),
+            ],
+          );
+        });
+    return exitApp ?? false;
   }
 }
